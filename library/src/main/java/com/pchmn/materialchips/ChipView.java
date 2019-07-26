@@ -133,10 +133,8 @@ public class ChipView extends RelativeLayout {
     public void inflate(ChipInterface chip) {
         mChip = chip;
         // label
-        mLabel = mChip.getLabel();
+        mLabel = mChip.getNamaKaryawan();
         // icon
-        mAvatarIconUri = mChip.getAvatarUri();
-        mAvatarIconDrawable = mChip.getAvatarDrawable();
 
         // inflate
         inflateWithAttributes();
@@ -147,7 +145,7 @@ public class ChipView extends RelativeLayout {
      *
      * @return the label
      */
-    public String getLabel() {
+    public String getNamaKaryawan() {
         return mLabel;
     }
 
@@ -214,7 +212,7 @@ public class ChipView extends RelativeLayout {
             else if(mAvatarIconDrawable != null)
                 mAvatarIconImageView.setImageDrawable(mAvatarIconDrawable);
             else
-                mAvatarIconImageView.setImageBitmap(mLetterTileProvider.getLetterTile(getLabel()));
+                mAvatarIconImageView.setImageBitmap(mLetterTileProvider.getLetterTile(getNamaKaryawan()));
         }
     }
 
@@ -420,9 +418,7 @@ public class ChipView extends RelativeLayout {
 
         public Builder chip(ChipInterface chip) {
             this.chip = chip;
-            this.label = chip.getLabel();
-            this.avatarIconDrawable = chip.getAvatarDrawable();
-            this.avatarIconUri = chip.getAvatarUri();
+            this.label = chip.getNamaKaryawan();
             return this;
         }
 

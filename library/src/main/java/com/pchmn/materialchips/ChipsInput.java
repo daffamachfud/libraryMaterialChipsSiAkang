@@ -154,28 +154,9 @@ public class ChipsInput extends ScrollViewMaxHeight {
         mChipsAdapter.addChip(chip);
     }
 
-    public void addChip(Object id, Drawable icon, String label, String info) {
-        Chip chip = new Chip(id, icon, label, info);
-        mChipsAdapter.addChip(chip);
-    }
 
-    public void addChip(Drawable icon, String label, String info) {
-        Chip chip = new Chip(icon, label, info);
-        mChipsAdapter.addChip(chip);
-    }
-
-    public void addChip(Object id, Uri iconUri, String label, String info) {
-        Chip chip = new Chip(id, iconUri, label, info);
-        mChipsAdapter.addChip(chip);
-    }
-
-    public void addChip(Uri iconUri, String label, String info) {
-        Chip chip = new Chip(iconUri, label, info);
-        mChipsAdapter.addChip(chip);
-    }
-
-    public void addChip(String label, String info) {
-        ChipInterface chip = new Chip(label, info);
+    public void addChip(String id, String namaKaryawan) {
+        ChipInterface chip = new Chip(id, namaKaryawan);
         mChipsAdapter.addChip(chip);
     }
 
@@ -183,17 +164,14 @@ public class ChipsInput extends ScrollViewMaxHeight {
         mChipsAdapter.removeChip(chip);
     }
 
-    public void removeChipById(Object id) {
+    public void removeChipById(String id) {
         mChipsAdapter.removeChipById(id);
     }
 
-    public void removeChipByLabel(String label) {
-        mChipsAdapter.removeChipByLabel(label);
+    public void removeChipByNamaKaryawan(String namaKaryawan) {
+        mChipsAdapter.removeChipByNama(namaKaryawan);
     }
 
-    public void removeChipByInfo(String info) {
-        mChipsAdapter.removeChipByInfo(info);
-    }
 
     public ChipView getChipView() {
         int padding = ViewUtil.dpToPx(4);

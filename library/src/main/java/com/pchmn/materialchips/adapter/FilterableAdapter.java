@@ -68,13 +68,13 @@ public class FilterableAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         mComparator = new Comparator<ChipInterface>() {
             @Override
             public int compare(ChipInterface o1, ChipInterface o2) {
-                return mCollator.compare(o1.getLabel(), o2.getLabel());
+                return mCollator.compare(o1.getNamaKaryawan(), o2.getNamaKaryawan());
             }
         };
         // remove chips that do not have label
         Iterator<? extends ChipInterface> iterator = chipList.iterator();
         while(iterator.hasNext()) {
-            if(iterator.next().getLabel() == null)
+            if(iterator.next().getNamaKaryawan() == null)
                 iterator.remove();
         }
         sortList(chipList);
@@ -130,29 +130,21 @@ public class FilterableAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         final ChipInterface chip = getItem(position);
 
         // avatar
-        if(mChipsInput.chipHasAvatarIcon() && chip.getAvatarUri() != null) {
+        if(mChipsInput.chipHasAvatarIcon()) {
             itemViewHolder.mAvatar.setVisibility(View.VISIBLE);
-            itemViewHolder.mAvatar.setImageURI(chip.getAvatarUri());
-        }
-        else if(mChipsInput.chipHasAvatarIcon() && chip.getAvatarDrawable() != null) {
-            itemViewHolder.mAvatar.setVisibility(View.VISIBLE);
-            itemViewHolder.mAvatar.setImageDrawable(chip.getAvatarDrawable());
-        }
-        else if(mChipsInput.chipHasAvatarIcon()) {
-            itemViewHolder.mAvatar.setVisibility(View.VISIBLE);
-            itemViewHolder.mAvatar.setImageBitmap(mLetterTileProvider.getLetterTile(chip.getLabel()));
+            itemViewHolder.mAvatar.setImageBitmap(mLetterTileProvider.getLetterTile(chip.getNamaKaryawan()));
         }
         else {
             itemViewHolder.mAvatar.setVisibility(GONE);
         }
 
         // label
-        itemViewHolder.mLabel.setText(chip.getLabel());
+        itemViewHolder.mLabel.setText(chip.getNamaKaryawan());
 
         // info
-        if(chip.getInfo() != null) {
+        if(chip.getId() != null) {
             itemViewHolder.mInfo.setVisibility(View.VISIBLE);
-            itemViewHolder.mInfo.setText(chip.getInfo());
+            itemViewHolder.mInfo.setText(chip.getId());
         }
         else {
             itemViewHolder.mInfo.setVisibility(GONE);
@@ -214,10 +206,10 @@ public class FilterableAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             } else {
                 final String filterPattern = constraint.toString().toLowerCase().trim();
                 for (ChipInterface chip : originalList) {
-                    if (chip.getLabel().toLowerCase().contains(filterPattern)) {
+                    if (chip.getNamaKaryawan().toLowerCase().contains(filterPattern)) {
                         filteredList.add(chip);
                     }
-                    else if(chip.getInfo() != null && chip.getInfo().toLowerCase().replaceAll("\\s", "").contains(filterPattern)) {
+                    else if(chip.getId() != null && chip.getId().toLowerCase().replaceAll("\\s", "").contains(filterPattern)) {
                         filteredList.add(chip);
                     }
                 }

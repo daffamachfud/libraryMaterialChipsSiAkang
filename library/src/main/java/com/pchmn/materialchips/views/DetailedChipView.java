@@ -179,7 +179,7 @@ public class DetailedChipView extends RelativeLayout {
         private Uri avatarUri;
         private Drawable avatarDrawable;
         private String name;
-        private String info;
+        private String id;
         private ColorStateList textColor;
         private ColorStateList backgroundColor;
         private ColorStateList deleteIconColor;
@@ -203,16 +203,14 @@ public class DetailedChipView extends RelativeLayout {
             return this;
         }
 
-        public Builder info(String info) {
-            this.info = info;
+        public Builder id(String id) {
+            this.id = id;
             return this;
         }
 
         public Builder chip(ChipInterface chip) {
-            this.avatarUri = chip.getAvatarUri();
-            this.avatarDrawable = chip.getAvatarDrawable();
-            this.name = chip.getLabel();
-            this.info = chip.getInfo();
+            this.name = chip.getNamaKaryawan();
+            this.id = chip.getId();
             return this;
         }
 
@@ -267,7 +265,7 @@ public class DetailedChipView extends RelativeLayout {
             detailedChipView.setDeleteIconColor(ColorStateList.valueOf(Color.BLACK));
 
         detailedChipView.setName(builder.name);
-        detailedChipView.setInfo(builder.info);
+        detailedChipView.setInfo(builder.id);
         return detailedChipView;
     }
 }

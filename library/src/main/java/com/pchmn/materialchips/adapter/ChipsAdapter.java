@@ -331,10 +331,10 @@ public class ChipsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    public void removeChipByLabel(String label) {
+    public void removeChipByNama(String namaKaryawan) {
         for (Iterator<ChipInterface> iter = mChipList.listIterator(); iter.hasNext(); ) {
             ChipInterface chip = iter.next();
-            if (chip.getLabel().equals(label)) {
+            if (chip.getNamaKaryawan().equals(namaKaryawan)) {
                 // remove chip
                 iter.remove();
                 // notify listener
@@ -348,10 +348,10 @@ public class ChipsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    public void removeChipByInfo(String info) {
+    public void removeChipById(String id) {
         for (Iterator<ChipInterface> iter = mChipList.listIterator(); iter.hasNext(); ) {
             ChipInterface chip = iter.next();
-            if (chip.getInfo() != null && chip.getInfo().equals(info)) {
+            if (chip.getId() != null && chip.getId().equals(id)) {
                 // remove chip
                 iter.remove();
                 // notify listener
@@ -381,7 +381,7 @@ public class ChipsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             for(ChipInterface item: contactList) {
                 if(chip.getId() != null && chip.getId().equals(item.getId()))
                     return true;
-                if(chip.getLabel().equals(item.getLabel()))
+                if(chip.getNamaKaryawan().equals(item.getNamaKaryawan()))
                     return true;
             }
         }
